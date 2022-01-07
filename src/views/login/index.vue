@@ -3,7 +3,8 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">Login Form</h3>
+        <h3 class="title">{{ $ln('CMS 後台系統') }}</h3>
+        <lang-select class="set-language"></lang-select>
       </div>
 
       <el-form-item prop="username">
@@ -41,7 +42,7 @@
         </span>
       </el-form-item>
 
-      <el-button type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
+      <el-button type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">{{ $ln('登入') }}</el-button>
 
       <div class="tips">
         <span style="margin-right:20px;">username: admin</span>
@@ -54,9 +55,13 @@
 
 <script>
 import { validUsername } from '@/plugins/vaildate'
+import LangSelect from '@/components/LangSelect'
 
 export default {
   name: 'Login',
+  components: {
+    LangSelect
+  },
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
@@ -86,12 +91,6 @@ export default {
     }
   },
   watch: {
-    $route: {
-      handler: function(route) {
-        this.redirect = route.query && route.query.redirect
-      },
-      immediate: true
-    }
   },
   methods: {
     showPwd() {
@@ -217,6 +216,14 @@ $light_gray:#eee;
       margin: 0px auto 40px auto;
       text-align: center;
       font-weight: bold;
+    }
+    .set-language {
+      color: #fff;
+      position: absolute;
+      top: 3px;
+      font-size: 18px;
+      right: 0px;
+      cursor: pointer;
     }
   }
 

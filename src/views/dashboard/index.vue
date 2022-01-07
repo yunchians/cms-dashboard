@@ -20,11 +20,13 @@ export default {
 <style lang="scss" scoped>
 .dashboard {
   &-container {
-    margin: 30px;
+    width: 95%;
+    margin: 0px auto;
   }
   &-text {
-    font-size: 30px;
+    font-size: 28px;
     line-height: 46px;
+    margin: 5px 0px;
   }
 }
 </style>

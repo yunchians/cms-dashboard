@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import Logo from './Logo'
 import SidebarItem from './SidebarItem'
 import variables from '@/styles/variables.scss'
@@ -27,9 +26,9 @@ import variables from '@/styles/variables.scss'
 export default {
   components: { SidebarItem, Logo },
   computed: {
-    ...mapGetters([
-      'sidebar'
-    ]),
+    sidebarStatus() {
+      return this.$store.state.app.sidebar
+    },
     routes() {
       return this.$router.options.routes
     },
@@ -49,7 +48,7 @@ export default {
       return variables
     },
     isCollapse() {
-      return !this.sidebar.opened
+      return !this.sidebarStatus.opened
     }
   }
 }
