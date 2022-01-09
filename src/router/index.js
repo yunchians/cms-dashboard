@@ -53,32 +53,32 @@ export const constantRoutes = [{
             name: 'dashboard',
             component: () =>
                 import ('@/views/dashboard/index'),
-            meta: { title: 'Dashboard', icon: 'dashboard' }
+            meta: { title: 'CMS 後台系統', icon: 'dashboard' }
         }]
     },
 
-    // {
-    //     path: '/example',
-    //     component: Layout,
-    //     redirect: '/example/table',
-    //     name: 'Example',
-    //     meta: { title: 'Example', icon: 'el-icon-s-help' },
-    //     children: [{
-    //             path: 'table',
-    //             name: 'Table',
-    //             component: () =>
-    //                 import ('@/views/table/index'),
-    //             meta: { title: 'Table', icon: 'table' }
-    //         },
-    //         {
-    //             path: 'tree',
-    //             name: 'Tree',
-    //             component: () =>
-    //                 import ('@/views/tree/index'),
-    //             meta: { title: 'Tree', icon: 'tree' }
-    //         }
-    //     ]
-    // },
+    {
+        path: '/report',
+        component: Layout,
+        redirect: '/report/users',
+        name: 'report',
+        meta: { title: '報表', icon: 'report' },
+        children: [{
+                path: 'users',
+                name: 'users',
+                component: () =>
+                    import ('@/views/report/users'),
+                meta: { title: '會員資料', icon: '' }
+            },
+            {
+                path: 'albums',
+                name: 'albums',
+                component: () =>
+                    import ('@/views/report/albums'),
+                meta: { title: '專輯列表', icon: '' }
+            }
+        ]
+    },
 
     // {
     //     path: '/form',

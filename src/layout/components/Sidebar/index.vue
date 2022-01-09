@@ -53,3 +53,9 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+  .el-submenu__title {
+    display: inline-flex;
+    align-items: center;
+  }
+</style>

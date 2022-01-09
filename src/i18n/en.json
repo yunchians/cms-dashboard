@@ -9,5 +9,14 @@
     "m00006": "Password Must be at least %s characters",
     "m00007": "Success",
     "m00008": "Optional",
-    "m00009": "Fuzzy"
+    "m00009": "Fuzzy",
+    "m00010": "Report",
+    "m00011": "Member Info",
+    "m00012": "Album List",
+    "m00013": "Name",
+    "m00014": "UserName",
+    "m00015": "Email",
+    "m00016": "City",
+    "m00017": "Singer",
+    "m00018": "The Album Name"
 }
