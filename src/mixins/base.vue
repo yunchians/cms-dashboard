@@ -5,7 +5,10 @@ export default {
   props: {},
   data: function() {
     // 資料
-    return {}
+    return {
+      list: [],
+      listLoading: false
+    }
   },
   computed: {
     // 相依的資料改變時才做計算方法

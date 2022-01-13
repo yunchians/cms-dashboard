@@ -38,16 +38,20 @@
 </template>
 <script>
 import { getMembersList } from '@/api/report'
+import base from '@/mixins/base'
+
 export default {
   name: "",
   props: {},
-  data () {
+  mixins: [
+    base
+  ],
+  data() {
     // 資料
     return {
-        list: null,
-        aaa: '111',
-        listLoading: true
-    }
+      list: [],
+      listLoading: true,
+    };
   },
   computed: {
     // 相依的資料改變時才做計算方法
@@ -65,9 +69,9 @@ export default {
   beforeMount: function () {
     // 執行元素掛載之前。
   },
-  mounted: function() {
+  mounted: function () {
     // 元素已掛載， el 被建立。
-    this.getList()
+    this.getList();
   },
   beforeUpdate: function () {
     // 當資料變化時被呼叫，還不會描繪 View。
@@ -83,12 +87,18 @@ export default {
   },
   methods: {
     async getList() {
-      this.listLoading = true
-      const data = await getMembersList()
-      console.log(data)
-      this.list = data
-      this.listLoading = false
-    }
+      this.list = []
+      this.listLoading = true;
+      const data = await getMembersList();
+      console.log('data', data);
+      if (data.length > 0) {
+        this.list = data
+      } else {
+        // 回來是單筆的obj格式
+        this.list.push(data)
+      }
+      this.listLoading = false;
+    },
   },
   // END--生命週期
 };

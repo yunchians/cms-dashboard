@@ -1,5 +1,16 @@
 <template>
   <div class="app-container">
+    <div class="search-wrapper">
+      <el-select v-model="selectUserId">
+      <el-option
+        v-for="item in userIdOptions"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value">
+      </el-option>
+    </el-select>
+    <el-button type="primary" style="margin: 0px 15px;" @click="getList()">{{ $ln('查詢') }}</el-button>
+    </div>
     <el-table
       v-loading="listLoading"
       :data="list"
@@ -28,15 +39,60 @@
 </template>
 <script>
 import { getAlbumsList } from '@/api/report'
+import base from '@/mixins/base'
+
 export default {
   name: "",
   props: {},
+  mixins: [
+    base
+  ],
   data () {
     // 資料
     return {
-        list: null,
-        aaa: '111',
-        listLoading: true
+      selectUserId: 1,
+      userIdOptions: [
+        {
+          label: 'Dua Lipa',
+          value: 1
+        },
+        {
+          label: 'Kate Perry',
+          value: 2
+        },
+        {
+          label: 'Avicii',
+          value: 3
+        },
+        {
+          label: 'Maroon 5',
+          value: 4
+        },
+        {
+          label: 'Bruno Mars',
+          value: 5
+        },
+        {
+          label: 'Adele',
+          value: 6
+        },
+        {
+          label: 'Rihanna',
+          value: 7
+        },
+        {
+          label: 'Sia',
+          value: 8
+        },
+        {
+          label: 'Christina Aguilera',
+          value: 9
+        },
+        {
+          label: 'Marshmello',
+          value: 10
+        }
+      ]
     }
   },
   computed: {
@@ -73,10 +129,19 @@ export default {
   },
   methods: {
     async getList() {
+      this.list = []
       this.listLoading = true
-      const data = await getAlbumsList()
-      console.log(data)
-      this.list = data
+      const params = {
+        userId: this.selectUserId
+      }
+      const data = await getAlbumsList(params)
+      console.log('data', data);
+      if (data.length > 0) {
+        this.list = data
+      } else {
+        // 回來是單筆的obj格式
+        this.list.push(data)
+      }
       this.listLoading = false
     }
   },
