@@ -1,6 +1,9 @@
 export default {
   resetState: (state) => {
-    Object.assign(state, state)
+    state.avatar = ''
+    state.token = null,
+    state.name = ''
+    state.googleLoginInfo = null
   },
   setToken: (state, token) => {
     state.token = token
@@ -10,5 +13,9 @@ export default {
   },
   setAvatar: (state, avatar) => {
     state.avatar = avatar
+  },
+  setGoogleInfo: (state, googleLoginInfo) => {
+    console.log('googleLoginInfo', googleLoginInfo)
+    state.googleLoginInfo = googleLoginInfo
   }
 }

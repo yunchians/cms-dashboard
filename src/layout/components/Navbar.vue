@@ -48,8 +48,12 @@ export default {
       this.$store.dispatch('app/toggleSideBar')
     },
     async logout() {
-      await this.$store.dispatch('user/logout')
-      this.$router.push('/login')
+      const auth2 = window.gapi.auth2.getAuthInstance()
+      auth2.signOut().then(() => {
+        // console.log('Google User signed out.')
+        this.$store.dispatch('user/logout')
+        this.$router.push('/login')
+      })
     }
   }
 }

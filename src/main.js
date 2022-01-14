@@ -11,6 +11,7 @@ import './plugins/filter'
 import i18n from './plugins/i18n'
 import '@/icons' // icon
 import '@/permission' // permission control
+import GoogleAuth from '@/config/google_oAuth.js'
 
 /**
  * If you don't want to use mock-server
@@ -24,13 +25,18 @@ import '@/permission' // permission control
 //   const { mockXHR } = require('../mock')
 //   mockXHR()
 // }
-
 // set ElementUI lang to EN
 Vue.use(ElementUI, {
   i18n: (key, value) => i18n.t(key, value)
 })
 // 如果想要中文版 element-ui，按如下方式声明
 // Vue.use(ElementUI)
+const gauthOption = {
+  clientId: '704286237031-m51827i6ukbpnds9a4pfipmuunk5ff1n.apps.googleusercontent.com',
+  scope: 'profile email',
+  prompt: 'select_account'
+}
+Vue.use(GoogleAuth, gauthOption)
 
 Vue.config.productionTip = false
 Vue.config.devtools = true

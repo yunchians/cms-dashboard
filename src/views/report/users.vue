@@ -48,10 +48,7 @@ export default {
   ],
   data() {
     // 資料
-    return {
-      list: [],
-      listLoading: true,
-    };
+    return {};
   },
   computed: {
     // 相依的資料改變時才做計算方法

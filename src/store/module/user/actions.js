@@ -65,5 +65,10 @@ export default {
             //     commit('resetState')
             //     resolve()
             // })
+    },
+    setGoogleInfo({ commit }, params) {
+        commit('setToken', 'token')
+        commit('setGoogleInfo', params)
+        setToken('token')
     }
 }

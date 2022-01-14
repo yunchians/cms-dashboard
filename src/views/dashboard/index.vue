@@ -1,6 +1,13 @@
 <template>
   <div class="dashboard-container">
     <div class="dashboard-text">name: {{ getName }}</div>
+    <div v-if="googleInfo !== null">
+      loginType: {{ googleInfo.loginType }}
+      <br>
+      gmail: {{ googleInfo.google.user.email }}
+      <br>
+      googleName: {{ googleInfo.google.user.name }}
+    </div>
   </div>
 </template>
 
@@ -12,7 +19,10 @@ export default {
   computed: {
     ...mapGetters({
       getName: 'user/getName'
-    })
+    }),
+    googleInfo() {
+      return this.$store.state.user.googleLoginInfo
+    }
   }
 }
 </script>
