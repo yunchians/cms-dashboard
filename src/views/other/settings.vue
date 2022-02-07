@@ -1,6 +1,6 @@
 <template>
   <div class="app-container settings-page">
-    <el-form ref="form" :model="form" label-width="120px">
+    <el-form ref="form" :model="form" label-position="top" label-width="120px">
       <el-form-item label="背景色">
         <el-color-picker v-model="form.bgColor"></el-color-picker>
       </el-form-item>
@@ -59,6 +59,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit()">更新</el-button>
+        <el-button type="success" @click="goFrontendUrl()">前台瀏覽</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -86,8 +87,8 @@ export default {
             url: "",
           },
         ],
-        photoBase64: "",
-        bgBase64: "",
+        photoUrl: "",
+        bgUrl: "",
       },
     };
   },
@@ -148,16 +149,27 @@ export default {
      * 提交更新
      */
     onSubmit() {
-      this.form.photoBase64 = this.photoOptions[this.form.photo - 1].base64;
-      this.form.bgBase64 = this.bgOptions[this.form.bgImg - 1].base64;
+      this.form.photoUrl = this.photoOptions[this.form.photo - 1].url;
+      this.form.bgUrl = this.bgOptions[this.form.bgImg - 1].url;
       console.log("this.form", this.form);
       localStorage.setItem("settingsData", JSON.stringify(this.form));
     },
+    /**
+    * 開啟前台網址
+    */
+    goFrontendUrl() {
+      let winRef = window.open("https://yunchians.github.io/cc-project/#/lynked", '_new')
+			if (!!winRef) winRef.location = "https://yunchians.github.io/cc-project/#/lynked"
+			else window.location.href = "https://yunchians.github.io/cc-project/#/lynked"
+    }
   },
   // END--生命週期
 };
 </script>
 <style lang="scss" scoped>
+.el-form {
+  overflow-x: auto;
+}
 .el-form-item {
   margin-bottom: 20px;
 }
@@ -196,6 +208,17 @@ img.bg-option {
 .add-block {
   text-align: left;
 }
+@media screen and (max-width: 767px) {
+  .urlList {
+    ul {
+      li {
+        .el-input {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
 </style>
 <style lang="scss">
 .photo,
@@ -207,6 +230,9 @@ img.bg-option {
 .settings-page {
   .el-form-item__content {
     line-height: 0px;
+  }
+  .el-form--label-top .el-form-item__label {
+    padding: 0px;
   }
 }
 </style>
