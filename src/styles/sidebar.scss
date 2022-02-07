@@ -5,6 +5,10 @@
         margin-left: $sideBarWidth;
         position: relative;
     }
+    .el-menu-item {
+        display: flex;
+        align-items: center;
+    }
     .sidebar-container {
         transition: width 0.28s;
         width: $sideBarWidth !important;

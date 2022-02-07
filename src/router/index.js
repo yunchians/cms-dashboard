@@ -58,6 +58,19 @@ export const constantRoutes = [{
     },
 
     {
+        path: '/other',
+        component: Layout,
+        redirect: 'other/settings',
+        children: [{
+            path: 'settings',
+            name: 'settings',
+            component: () =>
+                import ('@/views/other/settings'),
+            meta: { title: '設定', icon: 'settings' }
+        }]
+    },
+
+    {
         path: '/report',
         component: Layout,
         redirect: '/report/users',
